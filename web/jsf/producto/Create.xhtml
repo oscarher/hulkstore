@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" 
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Hulk Store</title>
+    </h:head>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductoLabel_nombreProducto}" for="nombreProducto" />
+                    <h:inputText id="nombreProducto" value="#{productoController.selected.nombreProducto}" title="#{bundle.CreateProductoTitle_nombreProducto}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_nombreProducto}"/>
+                    <h:outputLabel value="#{bundle.CreateProductoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{productoController.selected.cantidad}" title="#{bundle.CreateProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_cantidad}"/>
+                    <h:outputLabel value="#{bundle.CreateProductoLabel_fkIdTipo}" for="fkIdTipo" />
+                    <h:selectOneMenu id="fkIdTipo" value="#{productoController.selected.fkIdTipo}" title="#{bundle.CreateProductoTitle_fkIdTipo}" required="true" requiredMessage="#{bundle.CreateProductoRequiredMessage_fkIdTipo}">
+                        <f:selectItems value="#{tipoProductoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productoController.create}" value="#{bundle.CreateProductoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productoController.prepareList}" value="#{bundle.CreateProductoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

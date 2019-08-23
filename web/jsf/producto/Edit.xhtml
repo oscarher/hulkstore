@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Hulk Store</title>
+    </h:head>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductoLabel_nombreProducto}" for="nombreProducto" />
+                    <h:inputText id="nombreProducto" value="#{productoController.selected.nombreProducto}" title="#{bundle.EditProductoTitle_nombreProducto}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_nombreProducto}"/>
+                    <h:outputLabel value="#{bundle.EditProductoLabel_cantidad}" for="cantidad" />
+                    <h:inputText id="cantidad" value="#{productoController.selected.cantidad}" title="#{bundle.EditProductoTitle_cantidad}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_cantidad}" validatorMessage="#{bundle.EditProductoRequiredMessage_cantidadNegativa}" converterMessage="#{bundle.EditProductoRequiredMessage_cantidadLetras}"> 
+                        <f:validateLongRange minimum="0" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditProductoLabel_fkIdTipo}" for="fkIdTipo" />
+                    <h:selectOneMenu id="fkIdTipo" value="#{productoController.selected.fkIdTipo}" title="#{bundle.EditProductoTitle_fkIdTipo}" required="true" requiredMessage="#{bundle.EditProductoRequiredMessage_fkIdTipo}">
+                        <f:selectItems value="#{tipoProductoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productoController.update}" value="#{bundle.EditProductoSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="#{productoController.prepareList}" value="#{bundle.EditProductoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
