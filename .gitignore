@@ -1,3 +1,4 @@
 /build/
 *.war
 dist/hulkstore.war
+/nbproject/
