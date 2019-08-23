@@ -1,3 +1,3 @@
-# EL proyecto se hizo con BD en postgres. Crear BD con nombre hulkstore
+- EL proyecto se hizo con BD en postgres. Crear BD con nombre hulkstore
 # hulkstore
  
